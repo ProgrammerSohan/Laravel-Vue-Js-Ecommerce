@@ -1,18 +1,27 @@
 <template>
 
-    <div class="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+    <div class="min-h-full flex">
+        <!-- sidebar -->
+        <div class="w-[200px] bg-blue-700">
+           Sidebar
 
-          Part Of The Layout!!
         </div>
+        <!-- /sidebar -->
+        <div class="flex-1">
+            <header class="h-8 shadow bg-white">
+                Header
+            </header>
 
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-
+           <!-- content -->
+           <main>
             <router-view></router-view>
 
-          </div>
+          </main>
+           <!--/ content -->
+
         </div>
 
+        </div>
 
 </template>
 <script setup>

@@ -8,7 +8,7 @@
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
 
-                <slot> </slot>
+            <router-view></router-view>
 
           </div>
         </div>
@@ -16,6 +16,11 @@
 
 </template>
 <script setup>
+/*
+export default {
+    name:'AppLayout'
+
+}*/
 
     const { title } = defineProps({
         title: String
@@ -25,6 +30,6 @@
 
 
 </script>
-<style>
+<style scoped>
 
 </style>

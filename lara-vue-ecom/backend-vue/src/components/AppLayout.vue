@@ -2,10 +2,7 @@
 
     <div class="min-h-full flex">
         <!-- sidebar -->
-        <div class="w-[200px] bg-blue-700">
-           Sidebar
-
-        </div>
+        <Sidebar/>
         <!-- /sidebar -->
         <div class="flex-1">
             <header class="h-8 shadow bg-white">
@@ -25,11 +22,8 @@
 
 </template>
 <script setup>
-/*
-export default {
-    name:'AppLayout'
+import Sidebar from "./Sidebar.vue";
 
-}*/
 
     const { title } = defineProps({
         title: String

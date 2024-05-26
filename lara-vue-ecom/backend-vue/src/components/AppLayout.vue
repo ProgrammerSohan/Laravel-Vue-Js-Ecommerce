@@ -5,9 +5,7 @@
         <Sidebar/>
         <!-- /sidebar -->
         <div class="flex-1">
-            <header class="h-8 shadow bg-white">
-                Header
-            </header>
+            <TopHeader/>
 
            <!-- content -->
            <main>
@@ -23,6 +21,7 @@
 </template>
 <script setup>
 import Sidebar from "./Sidebar.vue";
+import TopHeader from "./TopHeader.vue";
 
 
     const { title } = defineProps({

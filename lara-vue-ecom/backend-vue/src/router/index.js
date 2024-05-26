@@ -13,6 +13,7 @@ const routes = [
         component: AppLayout,
         children: [
             {
+                //path: '/dashboard',
                 path: 'dashboard',
                 name: 'app.dashboard',
                 component: Dashboard

@@ -1,6 +1,6 @@
 <template>
 
-    <div class="min-h-full flex">
+    <div class="min-h-full bg-gray-200 flex">
         <!-- sidebar -->
         <Sidebar/>
         <!-- /sidebar -->
@@ -8,8 +8,8 @@
             <TopHeader/>
 
            <!-- content -->
-           <main>
-            <router-view></router-view>
+           <main class="p-6">
+           <router-view></router-view>
 
           </main>
            <!--/ content -->

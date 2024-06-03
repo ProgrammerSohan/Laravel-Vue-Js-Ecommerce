@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
+import Products from "../views/Products.vue";
 import Login from "../views/Login.vue";
 import RequestPassword from "../views/RequestPassword.vue";
 import ResetPassword from "../views/ResetPassword.vue";
@@ -17,6 +18,12 @@ const routes = [
                 path: 'dashboard',
                 name: 'app.dashboard',
                 component: Dashboard
+            },
+            {
+                path: 'products',
+                name: 'app.products',
+                component: Products
+
             }
 
         ]

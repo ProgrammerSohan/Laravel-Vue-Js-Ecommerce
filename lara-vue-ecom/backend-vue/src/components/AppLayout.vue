@@ -2,10 +2,10 @@
 
     <div class="min-h-full bg-gray-200 flex">
         <!-- sidebar -->
-        <Sidebar/>
+        <Sidebar :class="{'-ml-[200px]': !sidebarOpened}"/>
         <!-- /sidebar -->
         <div class="flex-1">
-            <TopHeader/>
+            <TopHeader @toggle-sidebar="toggleSidebar"> </TopHeader>
 
            <!-- content -->
            <main class="p-6">
@@ -20,6 +20,7 @@
 
 </template>
 <script setup>
+import {ref} from 'vue';
 import Sidebar from "./Sidebar.vue";
 import TopHeader from "./TopHeader.vue";
 
@@ -28,7 +29,15 @@ import TopHeader from "./TopHeader.vue";
         title: String
 
      })
+
+  const sidebarOpened = ref(true);
+
   //   const emit = defineEmits(['submit'])
+  function toggleSidebar(){
+   // console.log("toggleSidebar");
+    sidebarOpened.value = !sidebarOpened.value
+
+  }
 
 
 </script>

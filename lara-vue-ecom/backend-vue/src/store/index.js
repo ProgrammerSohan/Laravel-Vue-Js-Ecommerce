@@ -4,7 +4,8 @@ const store = createStore( {
     state: {
        // test: '123456789'
        user: {
-            token: null,
+            //token: null,
+            token: 1234,
             data: {
 
             }

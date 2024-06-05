@@ -19,7 +19,8 @@ axiosClient.interceptors.response.use(response=>{
         router.push({name:'login'})
 
     }
-    throw error;
+    //throw error;
+    console.error(error);
 });
 
 export default axiosClient;

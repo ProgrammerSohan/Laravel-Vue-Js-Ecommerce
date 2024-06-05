@@ -7,7 +7,9 @@ const store = createStore( {
        // test: '123456789'
        user: {
             //token: null,
+            //token: token:1234,
             token: sessionStorage.getItem('TOKEN'),
+
             data: { }
 
        }

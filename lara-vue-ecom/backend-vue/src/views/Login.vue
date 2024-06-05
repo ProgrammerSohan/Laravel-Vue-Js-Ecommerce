@@ -48,6 +48,8 @@
   import {ref} from 'vue'
 //import {LockClosedIcon} from '@heroicons/vue/solid';
 import GuestLayout from '../components/GuestLayout.vue';
+import store from "../store";
+import router from "../router";
 
 let loading = ref(false);
 let errorMsg = ref("");

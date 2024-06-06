@@ -19,15 +19,23 @@ use App\Http\Controllers\ProductController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });*/
-Route::middleware(['auth:sanctum','admin']) ->group(function(){
+
+//Route::middleware(['auth:sanctum','admin']) ->group(function(){
        /* Route::get('/user', function(Request $request){
             return $request->user();
         });*/
-        Route::get('/user',[AuthController::class, 'getUser']);
+      /*  Route::get('/user',[AuthController::class, 'getUser']);
         Route::post('/logout',[AuthController::class, 'logout']);
 
         Route::apiResource('/product', [ProductController::class]);
 
+    });*/
+    Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+        Route::get('/user', [AuthController::class, 'getUser']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+    
+        // Use apiResource correctly
+        Route::apiResource('/product', ProductController::class);
     });
 
 Route::post('/login',[AuthController::class, 'login']);

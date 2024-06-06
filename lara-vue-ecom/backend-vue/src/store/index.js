@@ -1,20 +1,10 @@
 import {createStore} from "vuex";
 import * as actions from './actions';
 import * as mutations from './mutations';
+import state from './state.js';
 
 const store = createStore( {
-    state: {
-       // test: '123456789'
-       user: {
-            //token: null,
-            //token: token:1234,
-            token: sessionStorage.getItem('TOKEN'),
-
-            data: { }
-
-       }
-
-    },
+    state,
     getters:{},
     actions,
     mutations,

@@ -8,7 +8,8 @@
                 <Menu as="div" class="relative inline-block text-left">
                       <MenuButton class="flex items-center">
                         <img src="https://randomuser.me/api/portraits/men/1.jpg" class="rounded-full w-8 mr-2">
-                        <small>{{currentUser}}</small>
+                        <small>{{currentUser.name}}</small>
+
                         <ChevronDownIcon
                           class="h-5 w-5 text-violet-200 hover:text-violet-100"
                           aria-hidden="true"
@@ -83,7 +84,7 @@ const router = useRouter();
 const emit = defineEmits(['toggle-sidebar'])
 
 //const currentUser = computed(()=> store.state.user.data);
-const currentUser = computed(()=> store.state.user);
+const currentUser = computed(()=> store.state.user.data);
 
 function logout(){
     store.dispatch('logout')

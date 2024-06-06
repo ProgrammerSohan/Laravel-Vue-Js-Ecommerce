@@ -50,6 +50,7 @@ class AuthController extends Controller
 
      public function getUser(Request $request)
      {
+        //return new UserResource($request->user());
         return new UserResource($request->user());
      }//end method
 

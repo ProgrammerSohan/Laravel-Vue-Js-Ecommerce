@@ -14,6 +14,15 @@ class ProductListResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        //return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title'=> $this->title,
+            'image' => $this->image,
+            'price' => $this->price,
+            'updated_at'=>(new \DateTime($this->created_at))->format('Y-m-d H:i:s'),
+
+        ];
+
     }
 }

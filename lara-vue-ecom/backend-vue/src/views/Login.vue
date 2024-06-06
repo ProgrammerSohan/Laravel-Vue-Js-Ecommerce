@@ -3,6 +3,25 @@
 
     <GuestLayout title="Sign in to your account">
         <form class="space-y-6" method="POST" @submit.prevent="login">
+            <div v-if="errorMsg" class="flex items-center justify-between py-3 px-5 bg-red-500 text-white rounded">
+                {{ errorMsg }}
+                <span @click="errorMsg = ''"
+                 class="
+                 w-8 h-8 flex items-center
+                justify-center rounded-full
+                transition-colors cursor-point
+                hover:bg-black/20
+                ">
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                  </svg>
+
+
+                </span>
+
+            </div>
           <div>
             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
             <div class="mt-2">
@@ -84,7 +103,12 @@ function login(){
         loading.value = false;
         router.push({name:'app.dashboard'})
     })
+    //.catch(({response})=>{
+        // debugger;//checking testing,console
+    //.catch((error)=>{
+        //debugger;
     .catch(({response})=>{
+
         loading.value = false;
         errorMsg.value = response.data.message;
     })

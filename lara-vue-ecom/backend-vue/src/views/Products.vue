@@ -3,7 +3,7 @@
      <div class="flex items-center justify-between mb-3">
         <h1 class="text-3xl font-semibold">Products</h1>
         <button type="submit"
-        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        class="flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 >
 Add new Product
 </button>
@@ -40,7 +40,7 @@ Add new Product
 
                 </tr>
             </thead>
-            <tbody>
+            <tbody >
                 <tr v-for="product of products.data">
                     <td class="border-b p-2">{{product.id}}</td>
                     <td class="border-b p-2">
@@ -52,7 +52,9 @@ Add new Product
                     <td class="border-b p-2">
                         {{ product.price }}
                     </td>
-
+                    <td class="border-b p-2">
+                        {{ product.updated_at }}
+                    </td>
                 </tr>
             </tbody>
 
@@ -63,6 +65,20 @@ Add new Product
 
 </template>
 <script setup>
+import {computed, onMounted, ref} from "vue";
+import store from "../store/index.js";
+
+const perPage = ref(10)
+const search = ref('')
+const products = computed(()=>store.state.products)
+
+onMounted(()=>{
+    getProducts();
+})
+
+function getProducts(){
+    store.dispatch('getProducts')
+}
 
 </script>
 <style scoped>

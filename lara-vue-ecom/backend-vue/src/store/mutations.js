@@ -13,3 +13,8 @@ export function setToken(state,token){
         sessionStorage.removeItem('TOKEN');
     }
 }
+
+export function setProducts(state,[loading,data]){
+    state.products.loading = loading;
+    state.products.data = data
+}

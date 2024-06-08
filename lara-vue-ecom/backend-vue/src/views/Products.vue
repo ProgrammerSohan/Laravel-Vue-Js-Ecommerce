@@ -1,5 +1,5 @@
 <template>
-
+     <pre>{{products.data}}</pre>
      <div class="flex items-center justify-between mb-3">
         <h1 class="text-3xl font-semibold">Products</h1>
         <button type="submit"

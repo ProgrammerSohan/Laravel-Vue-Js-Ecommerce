@@ -35,6 +35,7 @@ export function getProducts({commit}){
     commit('setProducts',[true])
    return axiosClient.get('product')
    .then(res => {
+       // debugger;
         commit('setProducts',[false, res.data])
    })
    .catch(()=>{

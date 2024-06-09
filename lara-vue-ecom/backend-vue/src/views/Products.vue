@@ -72,7 +72,7 @@ Add new Product
             :key="i"
             :disabled="!link.url"
 
-            @click="getForPage($event, link)"
+            @click.prevent="getForPage($event, link)"
             aria-current="page"
             class="relative inline-flex items-center px-4 py-2 border text-sm font-medium whitespace-nowrap"
             :class="[
@@ -111,8 +111,18 @@ onMounted(()=>{
     getProducts();
 })
 
-function getProducts(){
-    store.dispatch('getProducts')
+function getProducts(url = null){
+    store.dispatch('getProducts',{url})
+}
+
+function getForPage(ev, link){
+    if(!link.url || link.active){
+       // ev.preventDefault();
+       return
+
+    }
+    getProducts(link.url)
+
 }
 
 </script>

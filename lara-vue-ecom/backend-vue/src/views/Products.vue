@@ -67,8 +67,10 @@ Add new Product
 <script setup>
 import {computed, onMounted, ref} from "vue";
 import store from "../store/index.js";
+import Spinner from "../components/core/Spinner.vue";
+import {PRODUCTS_PER_PAGE} from "../constants.js";
 
-const perPage = ref(10)
+const perPage = ref(PRODUCTS_PER_PAGE)
 const search = ref('')
 const products = computed(()=>store.state.products)
 

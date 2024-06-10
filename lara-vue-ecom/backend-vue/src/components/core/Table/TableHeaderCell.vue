@@ -1,5 +1,5 @@
 <template>
-    <th @click="$emit('click')" class="border-b-2 p-2 text-left cursor-pointer bg-gray-100"
+    <th @click="$emit('click', field)" class="border-b-2 p-2 text-left cursor-pointer bg-gray-100"
      :class="field == sortField ? 'bg-blue-50' : ''">
      <div class="flex justify-between">
         <slot></slot>
@@ -24,5 +24,13 @@
 </template>
 
 <script setup>
+
+const {field, sortField, sortDirection} = defineProps({
+    field: String,
+    sortField: String,
+    sortDirection: String
+
+})
+const emit = defineEmits(['click'])
 
 </script>

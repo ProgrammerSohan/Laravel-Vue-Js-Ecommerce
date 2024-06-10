@@ -135,14 +135,19 @@ function getForPage(ev, link){
 }
 
 function sortProduct(field){
-    if(sortField!==field){
-        sortField.value = field;
-        sortDirection.value = 'asc'
-    }else if(sortDirection.value == 'asc'){
-        sortDirection.value = 'desc'
+    //debugger;
+    if(sortField.value == field){
+        if(sortDirection.value == 'asc'){
+        sortDirection.value = 'desc';
     }else {
+        sortDirection.value = 'asc';
+    }
+     }else {
+         sortField.value = field;
         sortDirection.value = 'asc'
     }
+
+    getProducts();
 }
 
 </script>

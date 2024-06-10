@@ -27,19 +27,27 @@ Add new Product
                    placeholder="Type to Search products">
           </div>
     </div>
-    <Spinner v-if="products.loading"/>
-    <template v-else>
+
+
         <table class="table-auto w-full">
             <thead>
                 <tr>
                     <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="id" :sort-field="sortField" :sort-direction="sortDirection">ID</TableHeaderCell>
                     <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="" :sort-field="sortField" :sort-direction="sortDirection">Image</TableHeaderCell>
-                    <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="title" :sort-field="sortField" :sort-direction="sortDirection">Title</TableHeaderCell>
+                    <TableHeaderCell class="border-b-2 p-2 text-left" field="title" :sort-field="sortField" :sort-direction="sortDirection">Title</TableHeaderCell>
                     <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="price" :sort-field="sortField" :sort-direction="sortDirection">Price</TableHeaderCell>
                     <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="updated_at" :sort-field="sortField" :sort-direction="sortDirection">Last Updated At</TableHeaderCell>
               </tr>
             </thead>
-            <tbody >
+            <tbody v-if="products.loading">
+                <tr>
+                    <td colspan="5">
+                        <Spinner class="my-4" v-if="products.loading"/>
+
+                    </td>
+                </tr>
+            </tbody>
+            <tbody v-else>
                 <tr v-for="product of products.data">
                     <td class="border-b p-2">{{product.id}}</td>
                     <td class="border-b p-2">
@@ -58,7 +66,7 @@ Add new Product
             </tbody>
 
         </table>
-        <div class="flex justify-between items-center mt-5">
+        <div v-if="!products.loading" class="flex justify-between items-center mt-5">
             <span>
                 Showing from {{ products.from }} to {{ products.to }}
             </span>
@@ -91,11 +99,12 @@ Add new Product
             </nav>
 
         </div>
-    </template>
 
 </div>
+    </template>
 
-</template>
+
+
 <script setup>
 import {computed, onMounted, ref} from "vue";
 import store from "../store/index.js";

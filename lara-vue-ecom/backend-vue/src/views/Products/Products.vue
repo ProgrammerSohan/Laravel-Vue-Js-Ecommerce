@@ -8,6 +8,8 @@
 Add new Product
 </button>
  </div>
+
+ <ProductModal />
   <ProductsTable />
  </template>
 
@@ -15,6 +17,7 @@ Add new Product
 
 <script setup>
 import ProductsTable from './ProductsTable.vue';
+import ProductModal from './ProductModal.vue';
 
 /*
 import {computed, onMounted, ref} from "vue";

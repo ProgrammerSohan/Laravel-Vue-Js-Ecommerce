@@ -60,19 +60,30 @@
 
                             </button>
                         </header>
-                        <form @submit.prevent="onSubmit">
+              <form @submit.prevent="onSubmit">
                  <div class="bg-white px-4 pt-5 pb-4">
                     <CustomInput class="mb-2" v-model="product.title" label="Product Title" />
                     <CustomInput type="file" class="mb-2" label="Product Image" @change="file => product.image =file" />
+                    <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description" />
+                    <CustomInput type="number" class="mb-2" v-model="product.price" label="Price" prepend="$" />
 
 
                             </div>
-                            <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex-row-reverse">
+                <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex-row-reverse">
+              <button type="submit" class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-white">
+                Submit
+            </button>
+
+            <button type="button"
+                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white"
+             @click="closeModal" ref="cancelButtonRef">
+                Cancel
+            </button>
 
 
-                            </footer>
+            </footer>
 
-                        </form>
+              </form>
 
                   </DialogPanel>
                 </TransitionChild>
@@ -83,7 +94,7 @@
       </template>
 
       <script setup>
-      import { ref,computed } from 'vue'
+      import { ref,computed,onUpdated } from 'vue'
       import {
         TransitionRoot,
         TransitionChild,
@@ -91,6 +102,9 @@
         DialogPanel,
         DialogTitle,
       } from '@headlessui/vue'
+//import store from '../../store';
+import store from '../../store/index.js';
+
 
       //const isOpen = ref(true)
     //  const isOpen = ref(false)
@@ -135,10 +149,38 @@
         show.value = false
         emit('close')
       }
-      /*
-      function openModal() {
-        isOpen.value = true
-      }*/
+
+      function onSubmit(){
+         loading.value = true
+         if(product.value.id){
+            store.dispatch('updateProduct', product.value)
+            .then(response => {
+                loading.value = false;
+                if(response.status == 200){
+                    //todo show notification
+                    store.dispatch('getProducts')
+                    closeModal()
+
+                }
+
+            })
+
+         }else {
+            store.dispatch('createProduct', product.value)
+            .then(response => {
+                loading.value = false;
+            if(response.status == 201){
+                //todo show notification
+                store.dispatch('getProducts')
+                closeModal()
+
+            }
+
+            })
+
+         }
+
+      }
 
       </script>
 

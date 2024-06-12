@@ -1,15 +1,7 @@
 
     <template>
-        <div class="fixed inset-0 flex items-center justify-center">
-          <button
-            type="button"
-            @click="openModal"
-            class="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
-          >
-            Open dialog
-          </button>
-        </div>
-        <TransitionRoot appear :show="isOpen" as="template">
+
+        <TransitionRoot appear :show="show" as="template">
           <Dialog as="div" @close="closeModal" class="relative z-10">
             <TransitionChild
               as="template"
@@ -70,7 +62,7 @@
       </template>
 
       <script setup>
-      import { ref } from 'vue'
+      import { ref,computed } from 'vue'
       import {
         TransitionRoot,
         TransitionChild,
@@ -79,14 +71,28 @@
         DialogTitle,
       } from '@headlessui/vue'
 
-      const isOpen = ref(true)
+      //const isOpen = ref(true)
+    //  const isOpen = ref(false)
+
+      const props = defineProps({
+        modelValue: Boolean
+      })
+
+      const emit = defineEmits(['update:modelValue'])
+
+      const show = computed( {
+        get: () => props.modelValue,
+        set: (value) => emit('update:modelValue', value)
+      })
 
       function closeModal() {
-        isOpen.value = false
+        show.value = false
       }
+      /*
       function openModal() {
         isOpen.value = true
-      }
+      }*/
+
       </script>
 
 

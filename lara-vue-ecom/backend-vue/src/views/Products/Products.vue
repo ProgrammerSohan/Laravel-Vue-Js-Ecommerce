@@ -1,4 +1,5 @@
 <template>
+
    <!--   <pre>{{products.data}}</pre> -->
      <div class="flex items-center justify-between mb-3">
         <h1 class="text-3xl font-semibold">Products</h1>
@@ -10,8 +11,9 @@ Add new Product
 </button>
  </div>
   <!--   <pre>{{showModal}}</pre> -->
- <ProductModal v-model="showModal" />
+ <ProductModal v-model="showModal" :product="productModel" />
   <ProductsTable />
+
  </template>
 
 
@@ -21,10 +23,18 @@ import ProductsTable from './ProductsTable.vue';
 import ProductModal from './ProductModal.vue';
 import {ref} from "vue";
 
-const showModal = ref(false)
+const showModal = ref(false);
+const productModel = ref({
+    id:'',
+    title:'',
+    image:'',
+    description:'',
+    price:'',
+
+})
 
 function showProductModal(){
-    showModal.value = true
+    showModal.value = true;
 
 }
 

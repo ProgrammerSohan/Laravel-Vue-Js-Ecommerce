@@ -69,13 +69,18 @@
 
 
                             </div>
-                <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex-row-reverse">
-              <button type="submit" class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-white">
+                <!-- <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex-row-reverse"> -->
+                <footer class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-end space-x-2">
+
+                <!--  class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-white" -->
+              <button type="submit" class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
                 Submit
             </button>
 
+            <!-- class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white" -->
             <button type="button"
-                class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white"
+                class="py-2 px-4 border border-gray-300 text-sm font-medium rounded-md shadow-sm bg-white hover:bg-gray-100"
+
              @click="closeModal" ref="cancelButtonRef">
                 Cancel
             </button>
@@ -94,7 +99,9 @@
       </template>
 
       <script setup>
-      import { ref,computed,onUpdated } from 'vue'
+     // import { ref, computed, onUpdated, defineProps, defineEmits } from 'vue';
+     /* import { ref,computed,onUpdated,defineProps, defineEmits } from 'vue'
+
       import {
         TransitionRoot,
         TransitionChild,
@@ -104,10 +111,22 @@
       } from '@headlessui/vue'
 //import store from '../../store';
 import store from '../../store/index.js';
-
+import CustomInput from '../../components/core/CustomInput.vue';*/
+import { ref, computed, onUpdated, defineProps, defineEmits } from 'vue';
+import { TransitionRoot, TransitionChild, Dialog, DialogPanel, DialogTitle } from '@headlessui/vue';
+import store from '../../store/index.js';
+import CustomInput from '../../components/core/CustomInput.vue';
 
       //const isOpen = ref(true)
     //  const isOpen = ref(false)
+    const props = defineProps({
+  modelValue: Boolean,
+  product: {
+    required: true,
+    type: Object,
+  }
+});
+
    const product = ref({
     id: props.product.id,
     title: props.product.title,
@@ -119,13 +138,13 @@ import store from '../../store/index.js';
 
     const loading = ref(false)
 
-      const props = defineProps({
+    /*  const props = defineProps({
         modelValue: Boolean,
         product: {
             required: true,
             type: Object,
         }
-      })
+      })*/
 
       const emit = defineEmits(['update:modelValue', 'close'])
 
@@ -156,7 +175,7 @@ import store from '../../store/index.js';
             store.dispatch('updateProduct', product.value)
             .then(response => {
                 loading.value = false;
-                if(response.status == 200){
+                if(response.status === 200){
                     //todo show notification
                     store.dispatch('getProducts')
                     closeModal()

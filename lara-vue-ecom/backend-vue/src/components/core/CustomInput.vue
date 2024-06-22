@@ -5,23 +5,23 @@
             <span v-if="prepend" class="inline-flex items-center px-3 rounded-l-md border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                 {{ prepend }}
             </span>
-            <template v-if="type === 'textarea'">
+            <template v-if="type === 'textarea'"> <!-- textarea -->
                 <!-- :value="props.modelValue" -->
                 <textarea :name="name"
                           :required="required"
                           :value="props.modelValue"
-                          @input="$emit('update:modelValue', $event.target.value)"
+                          @input="emit('update:modelValue', $event.target.value)"
                           :class="inputClasses"
                           :placeholder="label"
                           ></textarea>
 
             </template>
             <template v-else-if="type === 'file'">
-                <input :type="text"
+                <input :type="type"
                        :name="name"
                        :required="required"
                        :value="props.modelValue"
-                       @input="$emit('change',$event.target.files[0])"
+                       @input="emit('change',$event.target.files[0])"
                        :class="inputClasses"
                        :placeholder="label"/>
 
@@ -31,7 +31,7 @@
                        :name="name"
                        :required="required"
                        :value="props.modelValue"
-                       @input="$emit('update:modelValue', $event.target.value)"
+                       @input="emit('update:modelValue', $event.target.value)"
                        :class="inputClasses"
                        :placeholder="label"
                        step="0.01"/>
@@ -68,7 +68,7 @@ const props = defineProps({
 })
 
 const inputClasses = computed(()=>{
-    const cls = ['block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm',];
+    const cls = [`block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm`,];
 
    if(props.append && !props.prepend) {
         cls.push('rounded-l-md');

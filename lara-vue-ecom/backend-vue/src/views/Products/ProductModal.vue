@@ -12,7 +12,7 @@
               leave-from="opacity-100"
               leave-to="opacity-0"
             >
-              <div class="fixed inset-0 bg-black/25" />
+              <div class="fixed inset-0 bg-black bg-opacity-75" />
             </TransitionChild>
 
             <div class="fixed inset-0 overflow-y-auto">
@@ -29,14 +29,14 @@
                   leave-to="opacity-0 scale-95"
                 >
                   <DialogPanel
-                    class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
+                    class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all"
                   >
 
                     <Spinner v-if="loading"
                            class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
                         <header class="py-3 px-4 flex justify-between items-center">
                             <DialogTitle as="h3" class="text-lg leading-6 font-medium text-gray-900">
-                                {{ product.id ? 'Update product: "${props.product.title}"' : 'Create new Product' }}
+                                {{ product.id ? `Update product: "${props.product.title}"` : 'Create new Product' }}
                             </DialogTitle>
                             <button
                                 @click="closeModal()"
@@ -64,6 +64,7 @@
                  <div class="bg-white px-4 pt-5 pb-4">
                     <CustomInput class="mb-2" v-model="product.title" label="Product Title" />
                     <CustomInput type="file" class="mb-2" label="Product Image" @change="file => product.image =file" />
+
                     <CustomInput type="textarea" class="mb-2" v-model="product.description" label="Description" />
                     <CustomInput type="number" class="mb-2" v-model="product.price" label="Price" prepend="$" />
 
@@ -188,7 +189,7 @@ import CustomInput from '../../components/core/CustomInput.vue';
             store.dispatch('createProduct', product.value)
             .then(response => {
                 loading.value = false;
-            if(response.status == 201){
+            if(response.status === 201){
                 //todo show notification
                 store.dispatch('getProducts')
                 closeModal()

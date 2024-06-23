@@ -84,6 +84,7 @@
                                       active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                                       'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                     ]"
+                                    @click="editProduct(product)"
                                   >
                                   <PencilIcon
                                   :active="active"
@@ -172,6 +173,8 @@
  import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue';
  import { DotsVerticalIcon, PencilIcon, TrashIcon } from "@heroicons/vue/outline";
 
+ const emit = defineEmits(['clickEdit']);
+
  const perPage = ref(PRODUCTS_PER_PAGE)
  const search = ref('')
  const products = computed(()=>store.state.products)
@@ -227,6 +230,11 @@
 function showAddNewModal(){
     showProductModal.value = true
 }*/
+
+function editProduct(product){
+    emit('clickEdit', product)
+
+}
 
  function deleteProduct(product){
     if(!confirm(`Are you sure you want to delete the product?`)){

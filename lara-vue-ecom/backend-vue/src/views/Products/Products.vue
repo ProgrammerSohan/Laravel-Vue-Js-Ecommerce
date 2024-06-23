@@ -12,7 +12,7 @@ Add new Product
  </div>
   <!--   <pre>{{showModal}}</pre> -->
  <ProductModal v-model="showModal" :product="productModel" />
-  <ProductsTable />
+  <ProductsTable @clickEdit="editProduct" />
 
  </template>
 
@@ -22,6 +22,7 @@ Add new Product
 import ProductsTable from './ProductsTable.vue';
 import ProductModal from './ProductModal.vue';
 import {ref} from "vue";
+import store from '../../store';
 
 const showModal = ref(false);
 const productModel = ref({
@@ -35,6 +36,16 @@ const productModel = ref({
 
 function showProductModal(){
     showModal.value = true;
+
+}
+
+function editProduct(product){
+    store.dispatch('getProduct', product.id)
+     .then(({data}) => {
+        productModel.value = data
+        showProductModal()
+
+     })
 
 }
 

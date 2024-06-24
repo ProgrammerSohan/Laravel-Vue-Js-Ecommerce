@@ -35,7 +35,7 @@
                 </thead>
                 <tbody v-if="products.loading">
                     <tr>
-                        <td colspan="5">
+                        <td colspan="6">
                             <Spinner class="my-4" v-if="products.loading"/>
 
                         </td>
@@ -44,8 +44,9 @@
                 <tbody v-else>
        <!--   <tr v-for="(product, index) of products.data" class="animate-fade-in-down" :style="{'animation-delay' : `${index * 0.2}s` }"> -->
         <!-- <tr v-for="(product, index) in products.data" :key="product.id" class="animate-fade-in-down" :style="{ 'animation-delay': `${index *0.05}s` }"> -->
-        <tr v-for="(product, index) of products.data" class="animate-fade-in-down"
-        :style="{'animation-delay': (index * 0.1) + 's'}">
+        <!-- <tr v-for="(product, index) of products.data" class="animate-fade-in-down"
+        :style="{'animation-delay': (index * 0.1) + 's'}"> -->
+        <tr v-for="(product, index) of products.data">
 
                         <td class="border-b p-2">{{product.id}}</td>
                         <td class="border-b p-2">

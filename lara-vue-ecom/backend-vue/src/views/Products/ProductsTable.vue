@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white p-4 rounded-lg shadow">
+    <div class="bg-white p-4 rounded-lg shadow animate-fade-in-down">
         <div class="flex justify-between border-b-2 pb-3">
             <div class="flex items-center">
                 <span class="whitespace-nowrap mr-3">Per Page</span>
@@ -22,7 +22,7 @@
 
             <table class="table-auto w-full">
                 <thead>
-                    <tr>
+                    <tr >
                         <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="id" :sort-field="sortField" :sort-direction="sortDirection">ID</TableHeaderCell>
                         <TableHeaderCell @click="sortProduct" class="border-b-2 p-2 text-left" field="" :sort-field="sortField" :sort-direction="sortDirection">Image</TableHeaderCell>
                         <TableHeaderCell class="border-b-2 p-2 text-left" field="title" :sort-field="sortField" :sort-direction="sortDirection">Title</TableHeaderCell>
@@ -42,7 +42,11 @@
                     </tr>
                 </tbody>
                 <tbody v-else>
-                    <tr v-for="product of products.data">
+       <!--   <tr v-for="(product, index) of products.data" class="animate-fade-in-down" :style="{'animation-delay' : `${index * 0.2}s` }"> -->
+        <!-- <tr v-for="(product, index) in products.data" :key="product.id" class="animate-fade-in-down" :style="{ 'animation-delay': `${index *0.05}s` }"> -->
+        <tr v-for="(product, index) of products.data" class="animate-fade-in-down"
+        :style="{'animation-delay': (index * 0.1) + 's'}">
+
                         <td class="border-b p-2">{{product.id}}</td>
                         <td class="border-b p-2">
                             <img class="w-16" :src="product.image_url" :alt="product.title">

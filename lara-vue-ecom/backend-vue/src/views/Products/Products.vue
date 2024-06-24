@@ -35,7 +35,7 @@ const productModel = ref({
 })
 
 function showProductModal(){
-    showModal.value = true;
+    showModal.value = true
 
 }
 

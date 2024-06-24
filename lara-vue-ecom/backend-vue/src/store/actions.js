@@ -54,7 +54,7 @@ export function getProducts({commit}, {url = null, search = '', perPage = 10, so
    })
 }
 
-export function getProduct({}, id){
+export function getProduct({commit}, id){
     return axiosClient.get(`/products/${id}`);
 }
 

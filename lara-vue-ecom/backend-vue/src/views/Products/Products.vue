@@ -11,7 +11,7 @@ Add new Product
 </button>
  </div>
   <!--   <pre>{{showModal}}</pre> -->
- <ProductModal v-model="showModal" :product="productModel" />
+ <ProductModal v-model="showModal" :product="productModel" @close="onModalClose" />
   <ProductsTable @clickEdit="editProduct" />
 
  </template>
@@ -24,15 +24,18 @@ import ProductModal from './ProductModal.vue';
 import {ref} from "vue";
 import store from '../../store';
 
-const showModal = ref(false);
-const productModel = ref({
+const DEFAULT_EMPTY_OBJECT = {
+
     id:'',
     title:'',
     image:'',
     description:'',
     price:'',
 
-})
+
+}
+const showModal = ref(false);
+const productModel = ref({...DEFAULT_EMPTY_OBJECT})
 
 function showProductModal(){
     showModal.value = true
@@ -48,6 +51,11 @@ function editProduct(product){
      })
 
 }
+
+function onModalClose(){
+    productModel.value= {...DEFAULT_EMPTY_OBJECT}
+}
+
 
 </script>
 <style scoped>

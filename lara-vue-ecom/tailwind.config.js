@@ -17,5 +17,10 @@ export default {
         },
     },
 
-    plugins: [forms],
+    //plugins: [forms],
+    plugins:[
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/aspect-ratio'),
+
+    ],
 };

@@ -1,3 +1,3 @@
 <x-app-layout>
-    Welcome Sohan
+    Welcome
 </x-app-layout>

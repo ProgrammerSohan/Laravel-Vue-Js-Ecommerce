@@ -8,7 +8,7 @@
         <p class="text-center text-gray-500 mb-6">
           or
           <a
-            href="/src/signup.html"
+            href="{{ route('register') }}"
             class="text-sm text-purple-700 hover:text-purple-600"
             >create new account</a
           >
@@ -46,7 +46,7 @@
             />
             <label for="loginRememberMe">Remember Me</label>
           </div>
-          <a href="/src/password-reset.html" class="text-sm text-purple-700 hover:text-purple-600">Forgot Password?</a>
+          <a href="{{ route('password.request') }}" class="text-sm text-purple-700 hover:text-purple-600">Forgot Password?</a>
         </div>
         <button
           class="btn-primary bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 w-full"

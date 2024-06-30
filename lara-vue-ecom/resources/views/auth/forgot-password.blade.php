@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
 
       <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -26,7 +26,8 @@
             :value="old('email')"
             placeholder="Your email address"
             class="border-gray-300 focus:border-purple-500 focus:outline-none focus:ring-purple-500 rounded-md w-full"
-
+            required
+            autofocus
           />
           <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
@@ -37,4 +38,4 @@
         </button>
       </form>
 
-</x-guest-layout>
+</x-app-layout>

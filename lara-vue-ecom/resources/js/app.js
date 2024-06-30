@@ -122,6 +122,8 @@ document.addEventListener("alpine:init", () => {
       };
     });
 
+
+    /*
     Alpine.data("signupForm", () => ({
       defaultClasses: "focus:ring-purple-500 focus:border-purple-500",
       errorClasses:
@@ -185,7 +187,7 @@ document.addEventListener("alpine:init", () => {
           this.errors.password_repeat = "This field is required";
         }
       }
-    }));
+    }));*/
   });
 
   Alpine.start();

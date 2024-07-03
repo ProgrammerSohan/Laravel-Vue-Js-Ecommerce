@@ -18,7 +18,7 @@
         })"
         class="border border-1 border-gray-200 rounded-md hover:border-purple-600 transition-colors bg-white"
       >
-        <a href="/src/product.html" class="block overflow-hidden">
+        <a href="/src/product.html" class="block overflow-hidden aspect-w-3 aspect-h-2">
           <img
             src="{{ $product->image }}"
             alt=""
@@ -64,4 +64,5 @@
       <!--/ Product Item -->
       @endforeach
     </div>
+    {{ $products->links() }}
 </x-app-layout>

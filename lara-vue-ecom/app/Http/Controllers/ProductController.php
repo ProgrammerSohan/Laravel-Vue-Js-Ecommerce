@@ -18,9 +18,10 @@ class ProductController extends Controller
 
      public function view(Product $product)
      {
-       echo '<pre>';
+
+      /*  echo '<pre>';
             var_dump($product);
-        echo '</pre>';
+        echo '</pre>';*/
 
         return view('product.view',['product'=>$product]);
 

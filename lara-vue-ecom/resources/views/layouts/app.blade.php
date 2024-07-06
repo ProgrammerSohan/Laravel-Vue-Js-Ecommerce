@@ -28,7 +28,7 @@
       x-show="visible"
       x-transition
       x-cloak
-      @notify.window="show($event.detail.message)"
+       @notify.window="show($event.detail.message)"
       class="fixed w-[400px] left-1/2 -ml-[200px] top-16 py-2 px-4 pb-4 bg-emerald-500 text-white"
     >
       <div class="font-semibold" x-text="message"></div>

@@ -70,7 +70,9 @@
                     <div class="border-t border-gray-300 pt-4">
                         <div class="flex justify-between">
                             <span class="font-semibold">Subtotal</span>
+
                             <span id="cartTotal" class="text-xl" x-text="`$${cartTotal}`"></span>
+
                         </div>
                         <p class="text-gray-500 mb-6">
                             Shipping and taxes calculated at checkout.

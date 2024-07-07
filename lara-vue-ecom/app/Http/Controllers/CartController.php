@@ -13,7 +13,7 @@ class CartController extends Controller
 {
     public function index()
     {
-        $cartItems = Cart::getCartItems();
+       /* $cartItems = Cart::getCartItems();
 
         $ids = Arr::pluck($cartItems,'product_id');
         $products = Product::query()->whereIn('id', $ids)->get();
@@ -23,7 +23,16 @@ class CartController extends Controller
             $total += $products->price * $cartItems[$product->id]['quantity'];
         }
 
-        return view('cart.index', compact('cartItems','products','total'));
+        return view('cart.index', compact('cartItems','products','total'));*/
+        $cartItems = Cart::getCartItems();
+        $ids = Arr::pluck($cartItems, 'product_id');
+        $products = Product::query()->whereIn('id', $ids)->get();
+        $cartItems = Arr::keyBy($cartItems, 'product_id');
+        $total = 0;
+        foreach ($products as $product) {
+            $total += $product->price * $cartItems[$product->id]['quantity'];
+        }
+        return view('cart.index', compact('cartItems', 'products', 'total'));
     }//end method
 
     public function add(Request $request, Product $product)

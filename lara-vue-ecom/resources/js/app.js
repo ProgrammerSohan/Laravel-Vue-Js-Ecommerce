@@ -76,7 +76,7 @@ document.addEventListener("alpine:init", () => {
         addToCart( quantity = 1) {
             post(this.product.addToCartUrl,{quantity})
             .then(result =>{
-                this.$dispatch('cart-change',{count: result.count})
+                this.$dispatch('cart-change', {count: result.count})
                 this.$dispatch("notify", {
                     message: "The item was added into the cart",
                 });

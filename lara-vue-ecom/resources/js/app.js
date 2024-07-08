@@ -69,6 +69,7 @@ document.addEventListener("alpine:init", () => {
     }));
 
     Alpine.data("productItem", (product) => {
+
       return {
 
         product,

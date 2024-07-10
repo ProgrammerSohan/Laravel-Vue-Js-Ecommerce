@@ -10,6 +10,8 @@ use App\Http\Requests\ProfileRequest;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\PasswordUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -70,4 +72,18 @@ class ProfileController extends Controller
 
         return redirect()->route('profile');
     }//end method
+
+    public function passwordUpdate(PasswordUpdateRequest $request)
+    {
+        $user = $request->user();
+
+        $passwordData = $request->validated();
+
+        $user->password = Hash::make($passwordData['new_password']);
+        $user->save();
+
+        $request->session()->flash('flash_message','Your password was successfully updated.');
+        return redirect()->route('profile');
+
+    }
 }

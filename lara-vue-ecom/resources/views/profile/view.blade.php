@@ -44,7 +44,7 @@
 
                    }
 
-               }" action="{{ route('profile.update') }}" method="post">
+               }" action="{{ route('profile.update')}}" method="post">
                  @csrf
                  <h2 class="text-xl font-semibold mb-2">Profile Details</h2>
                  <div class="grid grid-cols-2 gap-3 mb-3">

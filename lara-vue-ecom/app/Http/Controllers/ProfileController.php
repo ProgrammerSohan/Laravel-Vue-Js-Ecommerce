@@ -29,4 +29,26 @@ class ProfileController extends Controller
         $countries = Country::query()->orderBy('name')->get();
         return view('profile.view',compact('customer','user','shippingAddress','billingAddress','countries'));
     }//end method
+
+    public function store(ProfileRequest $request)
+    {
+        $customerData = $request->validated();
+        $shippingData = $customerData['shipping'];
+        $billingData = $customerData['billing'];
+
+        $user = $request->user();
+        $customer = $user->customer;
+
+        $shippingAddress = $customer->shippingAddress ?: new CustomerAddress(['type'=> AddressType::Shipping]);
+        $billingAddress = $customer->billingAddress ?: new CustomerAddress(['type'=> AddressType::Billing]);
+
+        $customer->update($customerData);
+
+        $shippingAddress->update($shippingData);
+        $billingAddress->update($billingData);
+
+        $request->session()->flash('flash_message','Profile was successfully updated.');
+
+        return redirect()->route('profile');
+    }//end method
 }

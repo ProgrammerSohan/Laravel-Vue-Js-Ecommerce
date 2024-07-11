@@ -8,6 +8,8 @@ use App\Models\CartItem;
 use Illuminate\Support\Arr;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cookie;
+use session;
+use Stripe\Stripe;
 
 class CartController extends Controller
 {
@@ -149,6 +151,34 @@ class CartController extends Controller
             return response(['count' => Cart::getCountFromItems($cartItems)]);
         }
     }//end method
+
+    public function checkout(Request $request)
+    {
+        Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+
+        $cartItems = Cart::getCartItems();
+        dd($cartItems);
+
+        $session = \Stripe\Checkout\Session::create([
+            'line_items' => [[
+              'price_data' => [
+                'currency' => 'usd',
+                'product_data' => [
+                  'name' => 'T-shirt',
+                ],
+                'unit_amount' => 2000,
+              ],
+              'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => 'https://example.com/success',
+            'cancel_url' => 'https://example.com/cancel',
+          ]);
+
+
+    }//end method
+
+
 
     }
 
